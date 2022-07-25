@@ -36,6 +36,7 @@ class EnvioTenis{
 function buscarPrecio(id) {
     const tenis = tenisNike.find( p => p.id == id )
     carrito.push( {id: tenis.id, nombre: tenis.nombre, precio: tenis.precio}) 
+    return tenis.precio
 }
 
 alert('Bienvenido a la tienda Nike \nEscoge tus tenis favoritos')
