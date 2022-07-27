@@ -1,11 +1,14 @@
 console.log('Nike');
 let op2 = 1; //esta variable es para saber si el usuario quiere seguir comprando
 
+/* *********************************************************************************** */
+/* ************************* Arreglos de los productos ********************* */
+/* *********************************************************************************** */
 const tenisNike = [
-    {id: 'AF', nombre: 'Air Force', precio: 1500, stockAf: 10}, //Air Force
-    {id: 'DBK', nombre: 'Daybreak', precio: 1700, stockDbk: 10}, //Daybreak
-    {id: 'PEG', nombre: 'Pegasus', precio: 2000, stockPeg: 10}, //Pegasus
-    {id: 'WT', nombre: 'Waffle Trainer', precio: 2000, stockWt: 10}, //Waffle Trainer
+    {id: '1', modelo: 'Air Force', precio: 1500, stockAf: 10}, //Air Force
+    {id: '2', modelo: 'Daybreak', precio: 1700, stockDbk: 10}, //Daybreak
+    {id: '3', modelo: 'Pegasus', precio: 2000, stockPeg: 10}, //Pegasus
+    {id: '4', modelo: 'Waffle Trainer', precio: 2000, stockWt: 10}, //Waffle Trainer
 ]
 
 const tarifasDestino = {
@@ -21,6 +24,10 @@ const tarifasDestino = {
 
 const carrito = []
 
+
+/*  ******************************************************* */
+/*  ****************** Clases y funciones ************* */
+/*  ******************************************************* */
 class EnvioTenis{
     constructor (destino, precio) {
         this.destino = destino
@@ -35,21 +42,38 @@ class EnvioTenis{
 
 function buscarPrecio(id) {
     const tenis = tenisNike.find( p => p.id == id )
-    carrito.push( {id: tenis.id, nombre: tenis.nombre, precio: tenis.precio}) 
+    carrito.push( {id: tenis.id, nombre: tenis.modelo, precio: tenis.precio}) 
     return tenis.precio
 }
 
+function buscarProducto(id){
+    const nombreTenis= tenisNike.find( p => p.id == id)
+    return nombreTenis.modelo
+}
+
+function modelo(modelo) {
+    let search = buscarProducto(parseInt(modelo))
+        return  search
+}
+
+/*********************************************************************************** */
+/* Inicio del programa */
+/*********************************************************************************** */
+
 alert('Bienvenido a la tienda Nike \nEscoge tus tenis favoritos')
 let modelos = prompt('\n1.-Air Force \n2.-Daybreak \n3.-Pegasus \n4.-Waffle Trainer')
+let busq = modelo(modelos)
+alert(`Haz seleccionado: ${busq}`)
 do {
     switch (modelos) {
         case '1':
-            let color1 = prompt('Air Force solo color: \n1.-Blanco \t2.-Negro \t3.-Ninguno \n¿Cual deseas comprar?')
+            //modelo(modelos)
+            let color1 = prompt(`Disponibles solo color: \n1.-Blanco \t2.-Negro \t3.-Ninguno \n¿Cual deseas comprar?`)
             if(color1 == 1 ){
-                let precioT = parseInt(buscarPrecio('AF'))
-                let talla = prompt('Ingresa la talla de tus Air Force')
+                let precioT = buscarPrecio(parseInt(color1))
+                let talla = prompt(`Ingresa la talla de tus ${busq}`)
                 if (talla >= 22.5 && talla <= 30) {
-                    alert(`Tus tenis Nike air Force talla: ${talla} color Blancos se han agregado exitosamente a tu carrito`)
+                    alert(`Tus tenis Nike ${busq} talla: ${talla} color Blancos se han agregado exitosamente a tu carrito`)
                     let destino = prompt('Ingresa tu destino \nCDMX \nEDOMEX \nTOLUCA \nPACHUCA \nGUERRERO \nTLAXCALA \nVERACRUZ \nYUCATAN').toUpperCase()
                     const nuevosTenis = new EnvioTenis(destino, precioT)
                     nuevosTenis.tarifaFinal()
@@ -57,7 +81,7 @@ do {
                 } else {
                     alert('Talla solo disponible de 22.5 a 30 ')
                 }
-            } else if (color == 2){
+            } else if (color1 == 2){
                 let talla = prompt('Ingresa la talla de tus Air Force')
                 if (talla >= 22.5 && talla <= 30) {
                     alert(`Tus tenis Nike air Force talla: ${talla} color Negro se han agregado exitosamente a tu carrito`)
