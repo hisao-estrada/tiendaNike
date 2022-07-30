@@ -56,9 +56,13 @@ function menu() {
             alert('Talla solo disponible de 22.5 a 30 ')
         }
     } else if (color1 == 2){
+        let precioT = buscarPrecio(parseInt(modelos))
         let talla = prompt(`Ingresa la talla de tus ${busq}`)
         if (talla >= 22.5 && talla <= 30) {
-            alert(`Tus tenis Nike air Force talla: ${talla} color Negro se han agregado exitosamente a tu carrito`)
+            alert(`Tus tenis Nike ${busq} talla: ${talla} color Negro se han agregado exitosamente a tu carrito`)
+            let destino = prompt('Ingresa tu destino \nCDMX \nEDOMEX \nTOLUCA \nPACHUCA \nGUERRERO \nTLAXCALA \nVERACRUZ \nYUCATAN').toUpperCase()
+            const nuevosTenis = new EnvioTenis(destino, precioT)
+            nuevosTenis.tarifaFinal()
             stockAf--;
         } else {
             alert('Talla solo disponible de 22.5 a 30 ')
