@@ -40,6 +40,34 @@ class EnvioTenis{
     }
 }
 
+function menu() {
+    //modelo(modelos)
+    let color1 = prompt(`Disponibles solo color: \n1.-Blanco \t2.-Negro \t3.-Ninguno \n¿Cual deseas comprar?`)
+    if(color1 == 1 ){
+        let precioT = buscarPrecio(parseInt(modelos))
+        let talla = prompt(`Ingresa la talla de tus ${busq}`)
+        if (talla >= 22.5 && talla <= 30) {
+            alert(`Tus tenis Nike ${busq} talla: ${talla} color Blancos se han agregado exitosamente a tu carrito`)
+            let destino = prompt('Ingresa tu destino \nCDMX \nEDOMEX \nTOLUCA \nPACHUCA \nGUERRERO \nTLAXCALA \nVERACRUZ \nYUCATAN').toUpperCase()
+            const nuevosTenis = new EnvioTenis(destino, precioT)
+            nuevosTenis.tarifaFinal()
+            stockAf--;
+        } else {
+            alert('Talla solo disponible de 22.5 a 30 ')
+        }
+    } else if (color1 == 2){
+        let talla = prompt(`Ingresa la talla de tus ${busq}`)
+        if (talla >= 22.5 && talla <= 30) {
+            alert(`Tus tenis Nike air Force talla: ${talla} color Negro se han agregado exitosamente a tu carrito`)
+            stockAf--;
+        } else {
+            alert('Talla solo disponible de 22.5 a 30 ')
+        }
+    } else{
+        alert('Opcion Invalida')
+    }
+}
+
 function buscarPrecio(id) {
     const tenis = tenisNike.find( p => p.id == id )
     carrito.push( {id: tenis.id, nombre: tenis.modelo, precio: tenis.precio}) 
@@ -49,7 +77,7 @@ function buscarPrecio(id) {
 function buscarProducto(id){
     const nombreTenis= tenisNike.find( p => p.id == id)
     return nombreTenis.modelo
-}
+ }
 
 function modelo(modelo) {
     let search = buscarProducto(parseInt(modelo))
@@ -67,63 +95,18 @@ alert(`Haz seleccionado: ${busq}`)
 do {
     switch (modelos) {
         case '1':
-            //modelo(modelos)
-            let color1 = prompt(`Disponibles solo color: \n1.-Blanco \t2.-Negro \t3.-Ninguno \n¿Cual deseas comprar?`)
-            if(color1 == 1 ){
-                let precioT = buscarPrecio(parseInt(color1))
-                let talla = prompt(`Ingresa la talla de tus ${busq}`)
-                if (talla >= 22.5 && talla <= 30) {
-                    alert(`Tus tenis Nike ${busq} talla: ${talla} color Blancos se han agregado exitosamente a tu carrito`)
-                    let destino = prompt('Ingresa tu destino \nCDMX \nEDOMEX \nTOLUCA \nPACHUCA \nGUERRERO \nTLAXCALA \nVERACRUZ \nYUCATAN').toUpperCase()
-                    const nuevosTenis = new EnvioTenis(destino, precioT)
-                    nuevosTenis.tarifaFinal()
-                    stockAf--;
-                } else {
-                    alert('Talla solo disponible de 22.5 a 30 ')
-                }
-            } else if (color1 == 2){
-                let talla = prompt('Ingresa la talla de tus Air Force')
-                if (talla >= 22.5 && talla <= 30) {
-                    alert(`Tus tenis Nike air Force talla: ${talla} color Negro se han agregado exitosamente a tu carrito`)
-                    stockAf--;
-                } else {
-                    alert('Talla solo disponible de 22.5 a 30 ')
-                }
-            } else{
-                alert('Opcion Invalida')
-            }
+            menu()
             break;
         
         case '2':
-            let color2 = prompt('Talla Mediana Disponible solo color: \n1.-Amarillo \t2.-Azul \n¿Cual deseas comprar?')
-            if(color2 == 1){
-                stockRemeras--;
-                alert('¡La ramera color Amarilla es tuya!')
-            }else{
-                stockRemeras--;
-                alert('¡La ramera color Azul es tuya!')
-            }
+           menu()
             break;
         
         case '3':
-            let color3 = prompt('Talla Grande Disponible solo color: \n1.-Rojo \t2.-Gris \n¿Cual deseas comprar?')
-            if(color3 == 1){
-                stockRemeras--;
-                alert('¡La ramera color Rojo es tuya!')
-            }else{
-                stockRemeras--;
-                alert('¡La ramera color Gris es tuya!')
-            }
+            menu()
             break;
         case '4':
-            let color4 = prompt('Talla Grande Disponible solo color: \n1.-Rojo \t2.-Gris \n¿Cual deseas comprar?')
-            if(color4 == 1){
-                stockRemeras--;
-                alert('¡La ramera color Rojo es tuya!')
-            }else{
-                stockRemeras--;
-                alert('¡La ramera color Gris es tuya!')
-            }
+            menu()
             break;
         
         default:
