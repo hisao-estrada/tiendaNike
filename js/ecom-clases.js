@@ -6,12 +6,13 @@ class Modelo{
     }
 }
 
-const tenis1 = new Modelo("Air Force", "./imagenes/miles.png", "1500")
-const tenis2 = new Modelo("Daybreak", "./imagenes/browns.webp", "1700")
+const tenis1 = new Modelo("Air Force", "./imagenes/whites.jpg", "1500")
+const tenis2 = new Modelo("Daybreak", "./imagenes/whites.jpg", "1700")
 const tenis3 = new Modelo("Pegasus", "./imagenes/whites.jpg", "2500")
 const tenis4 = new Modelo("Waffle Trainer", "./imagenes/whites.jpg", "3500")
 
 const mostrador = []
+const carrito = []
 
 mostrador.push(tenis1)
 mostrador.push(tenis2)
@@ -19,7 +20,7 @@ mostrador.push(tenis3)
 mostrador.push(tenis4)
 
 function mostrarCarrito(tenis) {
-    const contenedorCarrito = document.createElement("div")
+    const contenedorCarrito = document.getElementById("carrito")
     contenedorCarrito.innerHTML = ""
 
     tenis.forEach(tenis => {
@@ -31,6 +32,7 @@ function mostrarCarrito(tenis) {
             <p> ${tenis.precio} </p>
     `
     contenedorCarrito.appendChild(divCarrito)
+    crearBotonEliminar()
     })
 }
 
@@ -52,7 +54,7 @@ function mostrarTenis(mostrador) {
 
            botonAgregarCarrito.addEventListener("click", ()=>{
             mostrarCarrito(mostrador)
-            crearBotonEliminar()
+            carrito.push(tenis)
            })
             contenedorTenis.appendChild(divTenis)
             contenedorTenis.appendChild(botonAgregarCarrito)
