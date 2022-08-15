@@ -19,11 +19,12 @@ mostrador.push(tenis2)
 mostrador.push(tenis3)
 mostrador.push(tenis4)
 
-function mostrarCarrito(tenis) {
+//Esta funcionm añade el carrito al html 
+function mostrarCarrito() {
     const contenedorCarrito = document.getElementById("carrito")
     contenedorCarrito.innerHTML = ""
 
-    tenis.forEach(tenis => {
+    carrito.forEach(tenis => {
         const divCarrito = document.createElement("div")
         divCarrito.innerHTML=`
             <h2> Agregado al carrito </h2>
@@ -32,15 +33,15 @@ function mostrarCarrito(tenis) {
             <p> ${tenis.precio} </p>
     `
     contenedorCarrito.appendChild(divCarrito)
-    crearBotonEliminar()
+    crearBotonEliminar(contenedorCarrito)
     })
 }
 
+//Funcion que imprime los tenis en el html dinamicamente
 function mostrarTenis(mostrador) {
-
     const contenedorTenis = document.getElementById("contenedor")
     contenedorTenis.innerHTML = ""
-
+    
     mostrador.forEach(tenis => {
         const divTenis = document.createElement("div")
         divTenis.classList.add("modelos") 
@@ -53,20 +54,22 @@ function mostrarTenis(mostrador) {
            botonAgregarCarrito.innerText = "Agregar al carrito"
 
            botonAgregarCarrito.addEventListener("click", ()=>{
-            mostrarCarrito(mostrador)
             carrito.push(tenis)
+            mostrarCarrito(mostrador)
            })
             contenedorTenis.appendChild(divTenis)
             contenedorTenis.appendChild(botonAgregarCarrito)
     });  
 }
 
-function crearBotonEliminar() {
+//Crea un boton para eliminar el contenido del carrito
+function crearBotonEliminar(contenedorCarrito) {
     const botonEliminar = document.createElement("button")
     botonEliminar.innerText = "Eliminar"
     botonEliminar.addEventListener("click", () =>{
-        mostrarTenis(mostrador)
-    })    
+        contenedorCarrito.innerHTML = ""
+    })   
+    contenedorCarrito.appendChild(botonEliminar) 
 }
 
 mostrarTenis(mostrador)
